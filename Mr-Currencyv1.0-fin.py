@@ -1,4 +1,4 @@
-# /bin/python3
+#!/bin/python3
 """
 This My mini project for bezzar of crypto currencys
 coder --> Eliot Elderson (EE)
@@ -7,10 +7,11 @@ Created in --> 29 Agu 2022
 Update in --> 31 Agu 2022
 support time --> forever :)
 Please Email:((((( --> coderpy@yahoo.com 
-
 """
 
-#packages to import
+"""
+in this section we import needs for run the program!
+"""
 import requests as req
 from bs4 import BeautifulSoup as bs
 import sys
@@ -18,7 +19,10 @@ from colorama import Fore as color
 import os
 
 
-# variables
+"""
+In this section we define some variables for program.
+"""
+
 bold = '\033[1m'
 endbold = '\033[0m'
 
@@ -61,11 +65,14 @@ cr_list = [
     'flow',
     'vechain']
 
-#clear the screen
+
+"""This section clear the screen."""
 os.system("clear")
 
 
-# functions
+"""
+In this section I define the functions and this function, Show the bannar in command line of your computer.
+"""
 def ban():
     #banner!
     print(bold+color.MAGENTA+'''                                                                 
@@ -86,14 +93,25 @@ def ban():
     print("----------------------------------")
 
 
+"""
+In this section I define The main function and I will more explain later.
+"""
 def cons():
+    """This try block and try some codes."""
     try:
+        """first try call the banner function."""
         ban()
+        """than with for loop print all of supported crypto currencys."""
         for x in cr_list:
             print(color.CYAN+x+endbold)
 
+        """In here I define While loop for my input becuse i want this run to infinity(until user enter Ctrl-C or exit command)."""
         while True:
+            """Input for user."""
             arz_avalie = input("Enter your crypto currency! : ")
+            """
+            some checks and define some command for program.
+            """
             if arz_avalie == "list":
                 print(cr_list)
 
@@ -114,7 +132,10 @@ def cons():
 
             if arz_avalie == "clear":
                 os.system("clear")
-
+            """
+            In this section if input be in the list of crypto currency and if status code of target site be 200, this section scrap the url and,
+            return the result to me.
+            """
             if arz_avalie in cr_list:
                 r = req.get("https://www.coindesk.com/price/"+arz_avalie+"/")
 
@@ -122,14 +143,19 @@ def cons():
                     soup = bs(r.text, 'html.parser')
                     val1 = soup.find("span", class_="typography__StyledTypography-owin6q-0 jvRAOp")
                     print(str(val1.text)+"$")
-
+                
                 elif r.status_code == 404:
+                    """if status code of site be 404 this section will return the text."""
                     print("Oops! Not found.")
+                
 
                 elif arz_avalie not in cr_list:
+                    """If input was not in cr list program will return this text"""
                     print("Sorry\n We are not supported this crypto currency!")
 
+    
     except KeyboardInterrupt:
+        """In this section if user click on Ctrl+C  program will return this text."""
         print("\nWhy do this! :/")
         sys.exit()
 
