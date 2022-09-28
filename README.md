@@ -6,7 +6,7 @@ u can use it to follow up the price of bitcoin
 **Install And Use**
 
 1.
-```git clone git@github.com:IamVeryAlone/Mr-currency-v1.0.git```
+```git clone https://github.com/IamVeryAlone/Mr-currency-v1.0.git```
 
 2.
 ```cd Mr-currency-v1.0```
